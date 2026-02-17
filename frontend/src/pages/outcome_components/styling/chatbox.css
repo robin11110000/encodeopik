@@ -1,0 +1,143 @@
+@keyframes chatbox-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chatbox-container {
+  position: fixed;
+  bottom: 6.3rem;
+  right: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+  z-index: 1050;
+}
+
+.chatbox-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.chatbox-window {
+  width: 450px;
+  height: 420px;
+  max-height: 512px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
+  overflow: hidden;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  animation: chatbox-slide-in 180ms ease-out;
+}
+
+.chatbox-header {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  padding: 0.9rem 1.1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatbox-header-subtitle {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.chatbox-body {
+  padding: 1rem;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  background-color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.chatbox-empty-state {
+  background-color: #e2e8f0;
+  border-radius: 12px;
+  padding: 0.9rem;
+  color: #1f2937;
+}
+
+.chatbox-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.chatbox-message-row {
+  display: flex;
+}
+
+.chatbox-message-user {
+  justify-content: flex-end;
+}
+
+.chatbox-message-assistant {
+  justify-content: flex-start;
+}
+
+.chatbox-bubble {
+  display: inline-block;
+  padding: 0.65rem 0.9rem;
+  border-radius: 12px;
+  max-width: 80%;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.chatbox-bubble-user {
+  background-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 2px 12px rgba(37, 99, 235, 0.32);
+}
+
+.chatbox-bubble-assistant {
+  background-color: #e2e8f0;
+  color: #1f2937;
+  box-shadow: 0 2px 10px rgba(148, 163, 184, 0.25);
+}
+
+.chatbox-bubble-loading {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.chatbox-footer {
+  padding: 0.85rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+  background-color: #ffffff;
+}
+
+.chatbox-input ::placeholder {
+  color: rgba(71, 85, 105, 0.7);
+}
+
+.chatbox-fab {
+  border-radius: 999px;
+  padding-inline: 1.4rem;
+}
+
+@media (max-width: 576px) {
+  .chatbox-window {
+    width: min(320px, calc(100vw - 2rem));
+  }
+
+  .chatbox-container {
+    right: 1rem;
+    bottom: 1rem;
+  }
+}

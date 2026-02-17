@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Landing AI Loan KYC Icon">
+  <defs>
+    <linearGradient id="bg" x1="12%" y1="88%" x2="88%" y2="12%">
+      <stop offset="0%" stop-color="#111736"/>
+      <stop offset="50%" stop-color="#1f3b5b"/>
+      <stop offset="100%" stop-color="#35c3d9"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffd700"/>
+      <stop offset="100%" stop-color="#ff8c42"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#bg)"/>
+  <g transform="translate(108 118)">
+    <rect x="0" y="32" width="180" height="210" rx="28" fill="rgba(255,255,255,0.08)" stroke="#7ce2ff" stroke-width="10"/>
+    <rect x="36" y="74" width="108" height="18" rx="9" fill="#7ce2ff"/>
+    <rect x="50" y="118" width="124" height="16" rx="8" fill="#ffffff" opacity="0.65"/>
+    <rect x="50" y="154" width="90" height="16" rx="8" fill="#ffffff" opacity="0.35"/>
+    <rect x="50" y="190" width="72" height="16" rx="8" fill="#ffffff" opacity="0.2"/>
+    <g transform="translate(212)">
+      <circle cx="86" cy="86" r="86" fill="url(#chip)"/>
+      <g fill="#111736">
+        <rect x="46" y="40" width="80" height="16" rx="8"/>
+        <rect x="46" y="116" width="80" height="16" rx="8"/>
+        <rect x="40" y="56" width="16" height="60" rx="8"/>
+        <rect x="110" y="56" width="16" height="60" rx="8"/>
+      </g>
+    </g>
+    <circle cx="128" cy="274" r="36" fill="#ff8c42"/>
+    <circle cx="268" cy="274" r="30" fill="#7ce2ff"/>
+    <circle cx="352" cy="196" r="24" fill="#ffd700"/>
+    <path d="M164 274h68" stroke="#7ce2ff" stroke-width="10" stroke-linecap="round"/>
+    <path d="M298 258l36-32" stroke="#ffd700" stroke-width="10" stroke-linecap="round"/>
+  </g>
+</svg>

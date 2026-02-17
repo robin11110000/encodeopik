@@ -1,0 +1,118 @@
+.upload-card {
+  padding: 1.25rem 1.5rem;
+  border-radius: 16px;
+  background: white;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.upload-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.upload-icon {
+  width: 58px;
+  height: 48px;
+  border-radius: 40%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.85),
+    rgba(255, 140, 66, 0.85)
+  );
+  color: #1a1a1a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 8px 18px rgba(255, 215, 0, 0.25);
+}
+
+.upload-dropzone {
+  width: 100%;
+  min-height: 140px;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 14px;
+  background: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.upload-dropzone:hover,
+.upload-dropzone:focus-within {
+  border-color: rgba(255, 215, 0, 0.75);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+}
+
+.upload-dropzone i {
+  font-size: 2rem;
+  color: #ffd700;
+}
+
+.upload-dropzone .text-warning {
+  font-weight: 700;
+}
+
+.upload-input {
+  display: none;
+}
+
+.selected-file-list {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.selected-file-entry {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(17, 17, 17, 0.85);
+  font-size: 0.9rem;
+  padding: 0.25rem 0;
+}
+
+.selected-file-entry .file-name {
+  font-weight: 600;
+}
+
+.selected-file-entry .file-size {
+  color: rgba(17, 17, 17, 0.6);
+  font-size: 0.85rem;
+}
+
+.selected-file-list ul {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .upload-card {
+    padding: 1.15rem 1.35rem;
+  }
+
+  .upload-dropzone {
+    min-height: 130px;
+  }
+}
+
+@media (max-width: 480px) {
+  .upload-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+
+  .upload-dropzone {
+    padding: 1rem;
+    min-height: 120px;
+  }
+}

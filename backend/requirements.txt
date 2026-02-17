@@ -1,0 +1,27 @@
+pandas
+fastapi
+uvicorn
+typing
+typing_extensions
+pymupdf
+python-multipart
+Pillow
+PyMuPDF
+python-dotenv
+landingai-ade
+opencv-python
+scikit-learn
+
+# image fraud engine dependencies
+opencv-python
+matplotlib
+
+## rag service dependencies
+sentence_transformers
+langchain-huggingface
+langchain-community
+langchain-aws
+# google-genai
+beautifulsoup4
+langchain-text-splitters
+opik

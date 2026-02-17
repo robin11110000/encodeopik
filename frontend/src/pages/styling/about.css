@@ -1,0 +1,16 @@
+#about .step-card {
+  transition: all 0.2s ease-in-out;
+}
+
+#about .step-card:hover {
+  transform: translateY(-3px);
+}
+
+#about .icon-wrapper {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#about .icon-wrapper:hover {
+  background-color: #0d6efd20;
+  transform: scale(1.1);
+}
