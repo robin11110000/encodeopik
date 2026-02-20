@@ -14,8 +14,20 @@ Observed & Traced with [Opik](https://www.comet.com/docs/opik)
 
 https://youtu.be/JWxo6Zf9zFk
 
-  Notes: I used duplicate documents for the demo. Please try it with the actual documents since it is built with LandingAI. The chatbot is still on the works.  
- 
+  Note: I used duplicate documents for the demo. Please try it with the actual documents since it is built with LandingAI. The chatbot is still on the works. To keep the demo within 5 min, i could'nt brief more on Opik integration. 
+  
+ Current Integration Status
+
+| Component | File | Integration |
+|-----------|------|------------|
+| Upload Endpoints | upload_controller.py | @track, @track_with_error_context, @track_performance, @track_business_metrics |
+| Search/Chat | search_controller.py | @track, @track_with_error_context, @track_performance |
+| Evaluate | evaluate_controller.py | @track, @track_with_error_context, @track_performance |
+| RAG Agent | rag_service/agent.py | @track, @track_rag_query, @track_with_error_context, @track_performance |
+| Evaluator | evaluator_service/evaluator.py | @track, @track_with_error_context, @track_performance, @track_business_metrics |
+| Config | opik_config.py | Basic configuration with env var support |
+| Decorators | opik_tracing.py | Custom decorators for error, performance, business metrics, RAG |
+
 ---
 
 # 🚨 Problem Statement
@@ -295,4 +307,5 @@ http://localhost:5173
 │       └── pages/
 └── opik/  (cloned from comet-ml/opik)
 ```
+
 
