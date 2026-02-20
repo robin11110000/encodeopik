@@ -1,12 +1,20 @@
 """Opik configuration for 0xnavi services."""
 import opik
+import os
+
 
 def configure_opik():
-    """Configure Opik to use local instance."""
+    """Configure Opik - uses existing config or environment variables."""
     try:
-        opik.configure(opik_url="http://localhost:5173/api")
-    except Exception:
-        pass
+        url_override = os.getenv("OPIK_URL_OVERRIDE")
+        
+        if url_override:
+            opik.configure(url=url_override)
+            
+        print(f"OPIK: Configuration completed successfully.")
+    except Exception as e:
+        print(f"OPIK: Using existing configuration.")
+
 
 def get_opik_client():
     """Get configured Opik client."""

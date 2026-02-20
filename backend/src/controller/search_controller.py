@@ -5,6 +5,7 @@ from opik import track
 from src.model.Response import Response
 from src.service.search_service.search_doc import search
 from src.service.rag_service.agent import RAGAgent
+from src.service.opik_tracing import track_with_error_context, track_performance
 
 
 router = APIRouter()
@@ -14,6 +15,8 @@ class AskRequest(BaseModel):
     query: str
 
 
+@track_with_error_context("search_documents")
+@track_performance
 @router.get("/search-doc", response_model=Response)
 @track(name="search_documents", capture_input=True, capture_output=True)
 async def search_docs(uuid: str):
@@ -36,6 +39,8 @@ async def search_docs(uuid: str):
         )
 
 
+@track_with_error_context("rag_query")
+@track_performance
 @router.post("/ask", response_model=Response)
 @track(name="rag_query", capture_input=True, capture_output=True)
 async def ask(request: AskRequest):

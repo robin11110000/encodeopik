@@ -175,7 +175,7 @@ Return JSON only.
                 "kpi_intent": bool(data.get("kpi_intent", False)),
             }
 
-            span.log_metadata({"intent_result": result})
+            span.metadata = {"intent_result": result}
             return result
 
         except Exception:

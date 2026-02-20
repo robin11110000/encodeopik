@@ -14,6 +14,7 @@ from src.service.rag_service.main import CaseDocumentLoader
 from src.service.rag_service.memory import ConversationMemory
 from src.service.rag_service.models import AllDocument, RawDocument, RetrievedChunk
 from src.service.rag_service.utils import Logger
+from src.service.opik_tracing import track_rag_query, track_with_error_context, track_performance
 
 logger = Logger.get_logger(__name__)
 
@@ -76,6 +77,9 @@ class RAGAgent:
         }
 
     # ------------------------------------------------------------------ #
+    @track_rag_query
+    @track_with_error_context("rag_ask")
+    @track_performance
     def ask(self, query: str, *, top_k: Optional[int] = None) -> Dict[str, object]:
         """Answer a query using FAISS retrieval, memory, and the LLM.
 

@@ -1,4 +1,6 @@
 from typing import List, Optional
+import os
+from pdf2image import convert_from_path
 from fastapi import Form, File, UploadFile, APIRouter
 from opik import track
 from src.model.Response import Response
@@ -20,6 +22,7 @@ from src.service.summary_service.summarizer_prompt import(BANK_STATEMENT_SUMMARI
                                                           TAX_STATEMENT_REPORT_SUMMARIZER_HUMAN_PROMPT,TAX_STATEMENT_REPORT_SUMMARIZER_SYSTEM_PROMPT,
                                                           UTILITY_BILL_REPORT_SUMMARIZER_HUMAN_PROMPT,UTILITY_BILLS_REPORT_SUMMARIZER_SYSTEM_PROMPT,
                                                           CREDIT_REPORT_SUMMARIZER_HUMAN_PROMPT,CREDIT_REPORT_SUMMARIZER_SYSTEM_PROMPT)
+from src.service.opik_tracing import track_with_error_context, track_performance, track_business_metrics
 
 router = APIRouter()
 bankstatement_kpi = BankStatementKPIs()
@@ -32,6 +35,9 @@ passport_fraud_detector  = PassportFraudDetector()
 passport_analyzer = PassportFraudAnalyzer()
 
 
+@track_with_error_context("upload_bank_statement")
+@track_performance
+@track_business_metrics("upload_bank_statement")
 @router.post("/bank_statement", response_model=Response)
 async def upload_bank_statement(
     metadata: Optional[str] = Form(None),
@@ -67,6 +73,9 @@ async def upload_bank_statement(
     )
 
 
+@track_with_error_context("upload_identity_document")
+@track_performance
+@track_business_metrics("upload_identity_document")
 @router.post("/identity_document", response_model=Response)
 async def upload_identity_document(
     metadata: Optional[str] = Form(None),
@@ -88,10 +97,25 @@ async def upload_identity_document(
     # folder_id = "0eb98f46-908a-4734-a4e5-645b6d7db032"
     markdown = get_document_data(folder_id, folder_name)
     image_path = get_image_file_paths(f"{base_path}/{document_type}")
-    image_output_path = f"{summary_output_path}/{document_type}_components_analyze.jpg" 
-    passport_detection_result = passport_fraud_detector.detect_all_components(image_path[0],image_output_path)
-    passport_analysis = passport_analyzer.analyze_passport(passport_detection_result[0],passport_detection_result[1])
-    passport_analyzer.save_fraud_result_as_json(passport_analysis,summary_output_path)
+    
+    if not image_path:
+        doc_folder = f"{base_path}/{document_type}"
+        pdf_files = [f for f in os.listdir(doc_folder) if f.endswith(".pdf")]
+        
+        if pdf_files:
+            pdf_full_path = os.path.join(doc_folder, pdf_files[0])
+            images = convert_from_path(pdf_full_path)
+            
+            converted_image_path = os.path.join(doc_folder, "converted_passport_page.jpg")
+            images[0].save(converted_image_path, "JPEG")
+            
+            image_path = [converted_image_path]
+    
+    if image_path:
+        image_output_path = f"{summary_output_path}/{document_type}_components_analyze.jpg"
+        passport_detection_result = passport_fraud_detector.detect_all_components(image_path[0],image_output_path)
+        passport_analysis = passport_analyzer.analyze_passport(passport_detection_result[0],passport_detection_result[1])
+        passport_analyzer.save_fraud_result_as_json(passport_analysis,summary_output_path)
     return Response(
         status=200,
         message="Documents uploaded successfully.",
@@ -103,6 +127,9 @@ async def upload_identity_document(
     )
 
 
+@track_with_error_context("upload_credit_report")
+@track_performance
+@track_business_metrics("upload_credit_report")
 @router.post("/credit_report", response_model=Response)
 async def upload_credit_report(
     metadata: Optional[str] = Form(None),
@@ -138,6 +165,9 @@ async def upload_credit_report(
     )
 
 
+@track_with_error_context("upload_income_proof")
+@track_performance
+@track_business_metrics("upload_income_proof")
 @router.post("/income_proof", response_model=Response)
 async def upload_income_proof(
     metadata: Optional[str] = Form(None),
@@ -172,6 +202,9 @@ async def upload_income_proof(
     )
 
 
+@track_with_error_context("upload_tax_statement")
+@track_performance
+@track_business_metrics("upload_tax_statement")
 @router.post("/tax_statement", response_model=Response)
 async def upload_tax_statement(
     metadata: Optional[str] = Form(None),
@@ -207,6 +240,9 @@ async def upload_tax_statement(
     )
 
 
+@track_with_error_context("upload_utility_bill")
+@track_performance
+@track_business_metrics("upload_utility_bill")
 @router.post("/utility_bill", response_model=Response)
 async def upload_utility_bill(
     metadata: Optional[str] = Form(None),

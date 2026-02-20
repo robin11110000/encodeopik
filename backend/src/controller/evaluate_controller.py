@@ -3,11 +3,14 @@ from opik import track
 
 from src.model.Response import Response
 from src.service.evaluator_service.evaluator import evaluate
+from src.service.opik_tracing import track_with_error_context, track_performance
 
 
 router = APIRouter()
 
 
+@track_with_error_context("evaluate_documents")
+@track_performance
 @router.get("/evaluate-doc", response_model=Response)
 @track(name="evaluate_documents", capture_input=True, capture_output=True)
 async def evaluate_docs(uuid: str):
