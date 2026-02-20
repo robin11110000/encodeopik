@@ -12,7 +12,10 @@ Observed & Traced with [Opik](https://www.comet.com/docs/opik)
 
 ## 🎬 Watch Demo
 
+https://youtu.be/JWxo6Zf9zFk
 
+  Notes: I used duplicate documents for the demo. Please try it with the actual documents since it is built with LandingAI. The chatbot is still on the works.  
+ 
 ---
 
 # 🚨 Problem Statement
@@ -208,9 +211,12 @@ This ensures:
 Create `.env` inside `backend/`:
 
 ```
-AWS_ACCESS_KEY=
-AWS_SECRET_KEY=
-VISION_AGENT_API_KEY=
+VISION_AGENT_API_KEY=""
+
+AWS_ACCESS_KEY_ID=""
+AWS_SECRET_ACCESS_KEY=""
+AWS_REGION=""
+
 ```
 
 ---
@@ -289,3 +295,4 @@ http://localhost:5173
 │       └── pages/
 └── opik/  (cloned from comet-ml/opik)
 ```
+
